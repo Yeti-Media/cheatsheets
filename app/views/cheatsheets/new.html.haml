@@ -1,0 +1,21 @@
+.row
+  .span8.offset4
+    %h2 Create a CheatSheet
+.row
+  .span8.offset4
+    = form_for @cheatsheet , :html => {:multipart => true} do |f|
+      .clearfix
+        = f.label :name , :class => 'xlInput'
+        .input
+          = f.text_field :name , :class => 'xlInput'
+      .clearfix
+        = f.label :image , :class => 'xlInput'
+        .input
+          = f.file_field :image , :class => 'xlInput'
+      .clearfix
+        = f.label :tag_list , :class => 'xlInput'
+        .input
+          = f.text_field :tag_list , :class => 'xlInput'
+      .actions
+        = f.submit "Create", :class => "btn primary"
+

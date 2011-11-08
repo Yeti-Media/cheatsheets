@@ -1,0 +1,19 @@
+.row
+  .span1
+    = link_to "<" , "#" , :class => "nav-prev"
+  .span14
+    %ul.unstyled
+      - @cheatsheets.each do |cs|
+        %li{:id => "cs-#{cs.name}"}
+          = cs.name
+
+  .span1.left
+    = link_to ">" , "#" , :class => "nav-next"
+
+.row#carousel.jcarousel-skin-tango
+  .span16
+    %ul.unstyled
+      - @cheatsheets.each do |cs|
+        %li{:id => "cs-#{cs.name}"}
+          = image_tag(cs.image.url)
+

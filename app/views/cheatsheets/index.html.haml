@@ -1,0 +1,26 @@
+- @cheatsheets.each do |cs|
+  .row
+    .span2
+      = link_to "Add" , cheatsheet_path(cs) , :method => :put
+    .span4
+      = image_tag cs.image.small.url , :class => 'thumbmail'
+    .span4
+      = cs.name
+    .span6
+      Tags:
+      - cs.tags.each do |tag|
+        = link_to tag , cheatsheets_path(:tag => tag)
+
+
+
+
+- if !params[:tag].present?
+  .row
+    .span6.offset5
+      = paginate @cheatsheets
+
+
+
+= content_for :sidebar do
+  = render 'shared/sidebar'
+

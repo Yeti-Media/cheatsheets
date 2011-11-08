@@ -1,0 +1,27 @@
+defaults: &defaults
+  twitter:
+    consumer_key: 5T4pHIO2jnxqmwwn4kE5w
+    consumer_secret: KGMCHC0pi1rKPzj9OETJXX4gigYkZe5iuckKZDA
+  facebook:
+    app_id: 114709451898747
+    secret_key: 8d03cef82f7edd2a3046a43b2b4e1f36
+  admin:
+    - nicolassanta
+    - nicktea
+    - madcowley
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  twitter:
+    consumer_key: a
+    consumer_secret: b
+  facebook:
+    app_id: c
+    secret_key: d
+

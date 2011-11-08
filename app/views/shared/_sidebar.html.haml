@@ -1,0 +1,7 @@
+.sidebar
+  = link_to "create cheatsheet" , new_cheatsheet_path
+  %h3 Tags
+  %ul.unstyled
+    - @tags.each do |tag|
+      %li= link_to tag[:name] , cheatsheets_path(:tag => tag[:name])
+

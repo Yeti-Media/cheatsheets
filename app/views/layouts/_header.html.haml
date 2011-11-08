@@ -1,0 +1,13 @@
+.span8.left
+  %ul.unstyled.inline
+    %li
+      Welcome
+      = current_user.name
+    %li= link_to "Sign Out", signout_path
+
+.span8.right
+  %ul.unstyled.inline
+    %li= link_to "Public Cheatsheets" , cheatsheets_path
+    %li= link_to "My Cheatsheets" , cheatsheet_path(current_user)
+    %li= link_to "Viewer" , viewer_path
+
