@@ -4,9 +4,22 @@
     %title AllCheatsheets
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
+    = yield :css
+    = yield :js
     = csrf_meta_tags
-  %body
-    .container
-      .content
-        = yield
+  %body{:style => 'padding-top: 40px;'}
+    %section.navigation
+      .topbar-wrapper
+        .topbar
+          .topbar-inner
+            .container
+              %h3= link_to "All Cheatsheets" , "/"
+              %ul.nav
+                %li= link_to "<" , "#" , :class => "nav-prev"
+                - @cheatsheets.each_with_index do |cs, index|
+                  %li.cheatsheet{:id => "cs_#{index}"}= link_to cs.name , "#" , :id => "cs_#{cs.name}" , :class => 'cs_nav_item' , 'rel' => index
+              %ul.nav.secondary-nav
+                = link_to ">" , "#" , :class => "nav-next"
+    .container-fluid
+      = yield
 

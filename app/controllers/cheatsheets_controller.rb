@@ -5,8 +5,10 @@ class CheatsheetsController < ApplicationController
   def index
     if params[:tag].present?
       @cheatsheets = Cheatsheet.tagged_with(params[:tag])
+    elsif params[:me]
+      @cheatsheets = Cheatsheet.find(current_user.selected_cheatsheets.map(&:cheatsheet_id))
     else
-      @cheatsheets = Cheatsheet.page(params[:page]).per(25)
+      @cheatsheets = Cheatsheet.page(params[:page]).per(15)
     end
     @tags = Cheatsheet.all_tags
     respond_with(@cheatsheets)
@@ -18,11 +20,13 @@ class CheatsheetsController < ApplicationController
   end
 
   def show
-    @cheatsheets = Cheatsheet.find(current_user.selected_cheatsheets.map(&:cheatsheet_id))
+    @cheatsheet = Cheatsheet.find(params[:id])
+    render :text => @cheatsheet.content
   end
 
   def create
     @cheatsheet = Cheatsheet.new(params[:cheatsheet])
+    current_user.selected_cheatsheets.create(:cheatsheet_id => @cheatsheet.id)
     @cheatsheet.save
     respond_with(@cheatsheet, :location => cheatsheets_url)
   end

@@ -1,21 +1,31 @@
 .row
-  .span8.offset4
-    %h2 Create a CheatSheet
-.row
-  .span8.offset4
-    = form_for @cheatsheet , :html => {:multipart => true} do |f|
+  = form_for @cheatsheet , :html => {:multipart => true} do |f|
+    %fieldset
+      %legend Create a CheatSheet
       .clearfix
-        = f.label :name , :class => 'xlInput'
+        = f.label :name
         .input
-          = f.text_field :name , :class => 'xlInput'
+          = f.text_field :name , :class => 'xlarge'
       .clearfix
-        = f.label :image , :class => 'xlInput'
+        = f.label :cheatsheet_type
         .input
-          = f.file_field :image , :class => 'xlInput'
+          = f.select :cheatsheet_type ,Cheatsheet::CHEATSHEET_TYPES,{}, :class => 'xlarge' , :id => 'cheatsheet_type'
+      .clearfix#image_type.cheatsheet_type
+        = f.label :image
+        .input
+          = f.file_field :image , :class => 'xlarge'
+      .clearfix#content_type.cheatsheet_type
+        = f.label :content
+        .input
+          = f.text_area :content , :class => 'xlarge'
+      .clearfix#url_type.cheatsheet_type
+        = f.label :url
+        .input
+          = f.url_field :url , :class => 'xlarge'
       .clearfix
-        = f.label :tag_list , :class => 'xlInput'
+        = f.label :tag_list
         .input
-          = f.text_field :tag_list , :class => 'xlInput'
+          = f.text_field :tag_list , :class => 'xlarge'
       .actions
         = f.submit "Create", :class => "btn primary"
 

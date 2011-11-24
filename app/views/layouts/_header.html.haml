@@ -1,13 +1,16 @@
-.span8.left
-  %ul.unstyled.inline
-    %li
-      Welcome
-      = current_user.name
-    %li= link_to "Sign Out", signout_path
-
-.span8.right
-  %ul.unstyled.inline
-    %li= link_to "Public Cheatsheets" , cheatsheets_path
-    %li= link_to "My Cheatsheets" , cheatsheet_path(current_user)
-    %li= link_to "Viewer" , viewer_path
+%section.navigation
+  .topbar-wrapper
+    .topbar
+      .topbar-inner
+        .container
+          %h3= link_to "All Cheatsheets" , "/"
+          %ul.nav
+            %li= link_to "All Cheatsheets" , cheatsheets_path
+            %li= link_to "New Cheatsheet" , new_cheatsheet_path
+            %li= link_to "My Cheatsheets" , cheatsheets_path(:me => true)
+            %li= link_to "Viewer" , viewer_path , :target => '_new'
+          %ul.nav.secondary-nav
+            %li
+              = current_user.name
+            %li= link_to "Sign Out", signout_path
 

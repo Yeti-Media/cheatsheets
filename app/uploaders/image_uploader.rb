@@ -12,11 +12,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
   version :small do
-    process :resize_to_fit => [200,200]
+    process :resize_to_fit => [90,90]
   end
 
   def default_url
-    "/images/avatar.jpg"
+    "/images/html-icon.png"
   end
 
   def extension_white_list

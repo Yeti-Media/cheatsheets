@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    %title AllCheatsheets
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    = yield
+    .row.span16.text_center#footer
+      %p= "Copyright © #{Time.now.year}  All Cheatsheets Inc."
+      %p
+        = "Powered by "
+        = link_to(image_tag("yeti_logo.png"), "http://www.yeti-media.com", :target => '_new')
+        = render :partial =>  "layouts/google_analytics"
+

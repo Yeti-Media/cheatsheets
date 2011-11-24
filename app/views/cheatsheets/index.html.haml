@@ -1,23 +1,35 @@
+.row.text_center
+  .span1.label
+    Action
+  .span2.label
+    Thumb
+  .span4.label
+    Name
+  .span4.label
+    Tags
+
 - @cheatsheets.each do |cs|
-  .row
-    .span2
-      = link_to "Add" , cheatsheet_path(cs) , :method => :put
-    .span4
-      = image_tag cs.image.small.url , :class => 'thumbmail'
-    .span4
+  .row.text_center
+    .span1.list_item.text_center
+      - if current_user.selected_cheatsheets.detect{|cst| cst.cheatsheet_id == cs.id }
+        = link_to "Del" , cheatsheet_path(cs) , :method => :delete , :class => "label important"
+      - else
+        = link_to "Add" , cheatsheet_path(cs) , :method => :put , :class => "label success"
+      %span.label.warning
+        = cs.selected_cheatsheets.count.to_s
+    .span2.thumb_list
+      = link_to(image_tag(cs.image.small.url , :class => 'thumbmail'), cs.image.url , :target => '_new')
+    .span4.list_item
       = cs.name
-    .span6
-      Tags:
+    .span4.list_item
       - cs.tags.each do |tag|
-        = link_to tag , cheatsheets_path(:tag => tag)
+        = link_to tag , cheatsheets_path(:tag => tag), :class => "label warning"
 
 
 
 
-- if !params[:tag].present?
-  .row
-    .span6.offset5
-      = paginate @cheatsheets
+- if !params[:tag].present? && !params[:me].present?
+  = paginate @cheatsheets
 
 
 
